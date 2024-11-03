@@ -4,6 +4,13 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from "react-i18next"
+import { ReactNode } from 'react';
+
+interface MembershipButtonProps {
+  icon: ReactNode;
+  label: string;
+  onClick: () => void;
+}
 
 export function Home() {
     const { t } = useTranslation();
@@ -43,7 +50,7 @@ export function Home() {
       )
 }
     
-function MembershipButton({ icon, label, onClick }) {
+function MembershipButton({ icon, label, onClick}: MembershipButtonProps) {
     return (
         <Button 
             className="w-full py-4 px-4 justify-start text-left bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 shadow-sm transition-colors"
