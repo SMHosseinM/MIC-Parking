@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { QrCode, Send } from 'lucide-react'
+import { QrCode } from 'lucide-react'
 import { useTranslation } from "react-i18next"
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"

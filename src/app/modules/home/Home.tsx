@@ -1,4 +1,4 @@
-import { UserPlus, QrCode, Award, Repeat } from 'lucide-react'
+import { UserPlus, QrCode, Repeat } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { useNavigate } from 'react-router-dom';
