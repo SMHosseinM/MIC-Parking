@@ -1,9 +1,14 @@
-export interface NewMembershipForm {
-    firstName: string,
-    lastName: string,
-    email: string,
-    transactionReference: string,
-    transactionDate: string
+import { DateTime } from "luxon";
+
+export interface MembershipForm {
+    firstName: string;
+    lastName: string;
+    email: string;
+    transactionReference: string;
+    transactionDate: string;
+    registrationNumber: string;
+    phoneNumber: string;
+    isActive: boolean;
 }
 
 export interface RenewMembershipForm {

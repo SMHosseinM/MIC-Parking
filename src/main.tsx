@@ -5,6 +5,8 @@ import './index.css'
 import App from './App.tsx'
 import NewMemberShip from './app/modules/home/membership/new-membership/NewMembership.tsx'
 import RenewMembership from './app/modules/home/membership/renew-membership/RenewMembership.tsx'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 import {
   createBrowserRouter,
@@ -35,5 +37,6 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <RouterProvider router={router} />
+    <ToastContainer />
   </StrictMode>,
 )

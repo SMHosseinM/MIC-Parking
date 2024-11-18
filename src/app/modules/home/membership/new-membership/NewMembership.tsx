@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { MembershipService } from '@/app/shared/services/membership.service'
 import {
   Dialog,
   DialogContent,
@@ -13,23 +14,29 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { NewMembershipForm } from '@/app/shared/models/membeship.model'
+import { MembershipForm } from '@/app/shared/models/membeship.model'
 
 export default function Component() {
   const { t } = useTranslation();
-  const [formData, setFormData] = useState<NewMembershipForm>({
+  const [formData, setFormData] = useState<MembershipForm>({
     firstName: '',
     lastName: '',
     email: '',
     transactionReference: '',
-    transactionDate: ''
+    transactionDate: '',
+    registrationNumber: '',
+    phoneNumber: '',
+    isActive: false
   })
-  const [errors, setErrors] = useState<NewMembershipForm>({
+  const [errors, setErrors] = useState<MembershipForm>({
     firstName: '',
     lastName: '',
     email: '',
     transactionReference: '',
-    transactionDate: ''
+    transactionDate: '',
+    registrationNumber: '',
+    phoneNumber: '',
+    isActive: false
   })
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,13 +47,25 @@ export default function Component() {
     }))
   }
 
+  const handlePhoneNumberInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    const phone = value.replace(/\D/g, '');
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: phone
+    }))
+  }
+
   const validateForm = () => {
-    const newErrors: NewMembershipForm = {
+    const newErrors: MembershipForm = {
       firstName: '',
       lastName: '',
       email: '',
       transactionReference: '',
-      transactionDate: ''
+      transactionDate: '',
+      registrationNumber: '',
+      phoneNumber: '',
+      isActive: false
     }
     let isValid = true
 
@@ -70,9 +89,17 @@ export default function Component() {
       isValid = false
     }
     if (!formData.transactionDate.trim()) {
-        newErrors.transactionDate = t('transactionDateValidationError')
-        isValid = false
-      }
+      newErrors.transactionDate = t('transactionDateValidationError')
+      isValid = false
+    }
+    if (!formData.registrationNumber.trim()) {
+      newErrors.registrationNumber = t('registrationNumberValidationError')
+      isValid = false
+    }
+    if (!formData.phoneNumber.trim()) {
+      newErrors.phoneNumber = t('phoneNumberValidationError')
+      isValid = false
+    }
 
     setErrors(newErrors)
     return isValid
@@ -81,9 +108,7 @@ export default function Component() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (validateForm()) {
-      console.log('Form submitted:', formData)
-      alert('Form submitted successfully!')
-      // Here you would typically send the data to your backend
+      new MembershipService().saveNewMembership('/new-membership', formData)
     }
   }
 
@@ -100,7 +125,7 @@ export default function Component() {
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="firstName">{t('firstName')}</Label>
+                <Label htmlFor="firstName">{t('firstNameTitle')}</Label>
                 <Input
                   id="firstName"
                   name="firstName"
@@ -115,7 +140,7 @@ export default function Component() {
                 )}
               </div>
               <div className="space-y-2">
-                <Label htmlFor="lastName">{t('lastName')}</Label>
+                <Label htmlFor="lastName">{t('lastNameTitle')}</Label>
                 <Input
                   id="lastName"
                   name="lastName"
@@ -144,6 +169,38 @@ export default function Component() {
               />
               {errors.email && (
                 <p id="email-error" className="text-sm text-red-500">{errors.email}</p>
+              )}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="phoneNumber">{t('phoneNumberTitle')}</Label>
+              <Input
+                id="phoneNumber"
+                name="phoneNumber"
+                type="tel"
+                placeholder={t('phoneNumberFormFiller')}
+                value={formData.phoneNumber}
+                onChange={handlePhoneNumberInputChange}
+                aria-invalid={!!errors.phoneNumber}
+                aria-describedby="phoneNumber-error"
+                maxLength={11}
+              />
+              {errors.email && (
+                <p id="phoneNumber-error" className="text-sm text-red-500">{errors.phoneNumber}</p>
+              )}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="registrationNumber">{t('registrationNumberTitle')}</Label>
+              <Input
+                id="registrationNumber"
+                name="registrationNumber"
+                placeholder={t('registrationNumberFormFiller')}
+                value={formData.registrationNumber}
+                onChange={handleInputChange}
+                aria-invalid={!!errors.registrationNumber}
+                aria-describedby="registrationNumber-error"
+              />
+              {errors.email && (
+                <p id="registrationNumber-error" className="text-sm text-red-500">{errors.registrationNumber}</p>
               )}
             </div>
             <div className="space-y-2">
