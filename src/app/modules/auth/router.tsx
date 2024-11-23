@@ -1,9 +1,14 @@
-import Signup from './components/Signup.tsx'
+import Login from './components/login';
+import Signup from './components/Signup';
 
 const router = [
     {
-        path: "/sign-up",
+        path: '/sign-up',
         element: <Signup />
+    },
+    {
+        path: '/login',
+        element: <Login />
     }
 ]
 

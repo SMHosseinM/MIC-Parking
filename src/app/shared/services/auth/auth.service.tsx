@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 import { toast } from 'react-toastify'
-import { SignUpForm } from "../../models/auth.model";
+import { LoginForm, SignUpForm } from "../../models/auth.model";
 
 
 export class AuthService {
@@ -29,5 +29,13 @@ export class AuthService {
             toast.error(error.response.data.message)
           }
         
+    }
+
+    public async login(endpoint: string, body: LoginForm): Promise<void> {
+        try {
+            await this.axiosInstance.post<void>(endpoint, body);
+        } catch (error: any) {
+            toast.error(error.response.data.message)
+        }
     }
 }

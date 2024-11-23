@@ -8,7 +8,7 @@ import { SignUpForm } from '@/app/shared/models/auth.model'
 import { AuthService } from '@/app/shared/services/auth/auth.service'
 import { useNavigate } from 'react-router-dom';
 
-export default function Component() {
+export default function Signup() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [ singUpFormData, setSignUpFormData] = useState<SignUpForm>({
