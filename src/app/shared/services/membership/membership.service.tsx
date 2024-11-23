@@ -1,5 +1,5 @@
-import axios, { AxiosInstance, AxiosResponse } from "axios";
-import { MembershipForm } from "../models/membeship.model";
+import axios, { AxiosInstance } from "axios";
+import { MembershipForm } from "../../models/membeship.model";
 import { toast } from 'react-toastify'
 
 

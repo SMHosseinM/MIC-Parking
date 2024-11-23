@@ -7,6 +7,7 @@ import NewMemberShip from './app/modules/home/membership/new-membership/NewMembe
 import RenewMembership from './app/modules/home/membership/renew-membership/RenewMembership.tsx'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import authRouter from './app/modules/auth/router.tsx'
 
 import {
   createBrowserRouter,
@@ -14,7 +15,7 @@ import {
 } from "react-router-dom";
 import ReissueQRCode from './app/modules/home/membership/reissue-qrcode/ReissueQRCode.tsx'
 
-const router = createBrowserRouter([
+const mainRouter = [
   {
     path: "/",
     element: <App />,
@@ -32,7 +33,10 @@ const router = createBrowserRouter([
     path: "/reissue-qrcode",
     element: <ReissueQRCode />
   }
-]);
+];
+
+const router = createBrowserRouter([...authRouter, ...mainRouter])
+
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
