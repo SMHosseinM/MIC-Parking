@@ -1,5 +1,5 @@
 import Login from './components/login';
-import Signup from './components/Signup';
+import Signup from './components/signup';
 
 const router = [
     {
