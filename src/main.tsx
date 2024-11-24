@@ -8,6 +8,7 @@ import RenewMembership from './app/modules/home/membership/renew-membership/Rene
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import authRouter from './app/modules/auth/router.tsx'
+import dashboardRouter from './app/modules/dashboard/router.tsx'
 
 import {
   createBrowserRouter,
@@ -35,7 +36,7 @@ const mainRouter = [
   }
 ];
 
-const router = createBrowserRouter([...authRouter, ...mainRouter])
+const router = createBrowserRouter([...authRouter, ...mainRouter, ...dashboardRouter])
 
 
 createRoot(document.getElementById('root')!).render(

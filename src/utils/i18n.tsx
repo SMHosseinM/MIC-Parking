@@ -45,7 +45,10 @@ const resources = {
         qrCodeBtn: "Reissue Membership QR Code",
         membershipBtn: "Become a Member",
         registrationBtn: "Register New Member",
-        copyRight: "2024 Manchester Islamic Centre. All rights reserved."
+        copyRight: "2024 Manchester Islamic Centre. All rights reserved.",
+        dashboard: "Dashboard",
+        dashboardSettings: "Settings",
+        dashboardSettingsMembers: "Members"
       }
     },
     fr: {
