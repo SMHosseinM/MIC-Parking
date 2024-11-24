@@ -33,7 +33,7 @@ export class AuthService {
 
     public async login(endpoint: string, body: LoginForm): Promise<void> {
         try {
-            await this.axiosInstance.post<void>(endpoint, body);
+            await this.axiosInstance.post<void>(endpoint, body, {withCredentials: true});
         } catch (error: any) {
             toast.error(error.response.data.message)
         }
