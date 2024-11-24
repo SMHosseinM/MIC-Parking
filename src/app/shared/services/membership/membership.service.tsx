@@ -19,7 +19,7 @@ export class MembershipService {
 
     public async saveNewMembership(endpoint: string, body: MembershipForm): Promise<void>{
         try {
-            await this.axiosInstance.post<void>(endpoint, body, {withCredentials: true})
+            await this.axiosInstance.post<void>(endpoint, body)
             toast.success(
                 <div>
                     Thanks for your membership!
