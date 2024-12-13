@@ -19,3 +19,16 @@ export interface RenewMembershipForm {
 export interface ReissueQRCodeForm {
     email: string
 }
+
+export interface Member {
+    id?: string
+    first_name: string
+    last_name: string
+    email: string
+    registration_number: string
+    phone_number: string
+    transaction_reference: string
+    transaction_date: Date | string
+    is_active?: boolean
+    created_at?: Date | string
+  }
