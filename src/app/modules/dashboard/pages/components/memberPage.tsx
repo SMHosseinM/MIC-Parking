@@ -5,7 +5,6 @@ import { MemberService } from "@/app/shared/services/member/member.service";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { MoreHorizontal } from "lucide-react";
-import { it } from "node:test";
 import { useEffect, useState } from "react";
 
 const members: (limit: number, offset: number) => Promise<Page<Member>> = async (limit, offset) => {
